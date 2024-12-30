@@ -9,16 +9,15 @@ contract chai {
         address from;
     }
 
-    Memo[] memos;
-
-    address payable owner;
+    Memo[] public memos;
+    address payable public owner;
 
     constructor() {
         owner = payable(msg.sender);
     }
 
     function buyChai(string memory name, string memory message) public payable {
-        require(msg.value > 0, "pleas pay grater than zero");
+        require(msg.value > 0, "Please pay greater than zero");
         owner.transfer(msg.value);
         memos.push(Memo(name, message, block.timestamp, msg.sender));
     }
